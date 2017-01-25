@@ -140,6 +140,12 @@ namespace Core
             DownloadFile(remoteFile, localPath, ref r);
             return r;
         }
+        
+        public SshCommand ExecuteCommand(string @command)
+        {
+            var r = true;
+            return ExecuteCommand(@command, ref r);
+        }
 
         //if someone need it...
         public static ConnectionInfo CreateConnectionInfo(string privateKeyPath, string serverIp)
