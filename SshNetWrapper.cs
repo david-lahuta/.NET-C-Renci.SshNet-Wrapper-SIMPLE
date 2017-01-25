@@ -13,7 +13,7 @@ namespace Core
         private readonly SshClient _sshClient;
         private const int SftpBufferSize = 30 * 1024; //roughly max
 
-        //RECOMMENDED USAGE EXAMPLE
+        //  USAGE EXAMPLE
         /*  SshCommand cmdResult;
          *  var runtimeSuccess = true;
          *  using (var con = new SshNetWrapper(privateKeyPath, serverIp))
