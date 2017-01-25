@@ -12,7 +12,7 @@ For FILE PATHS **I'm using HostingEnvironment.MapPath(...)**, make sure is it OK
 - Reboot
 - CreateConnectionInfo
 
-## RECOMMENDED USAGE EXAMPLE
+## USAGE EXAMPLE
 
 ```
 SshCommand cmdResult;
