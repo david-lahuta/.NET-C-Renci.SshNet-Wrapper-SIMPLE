@@ -4,7 +4,7 @@ using System.IO;
 using System.Net.Sockets;
 namespace Core
 {
-    public class LinuxConnector : IDisposable
+    public class SshNetWrapper : IDisposable
     {
         private readonly string _privateKeyPath;
         private static string _username = "admin";
@@ -16,7 +16,7 @@ namespace Core
         //RECOMMENDED USAGE EXAMPLE
         /*  SshCommand cmdResult;
          *  var runtimeSuccess = true;
-         *  using (var con = new LinuxConnector(privateKeyPath, serverIp))
+         *  using (var con = new SshNetWrapper(privateKeyPath, serverIp))
          *  {
          *     cmdResult = con.ExecuteCommand("sudo....", ref ok);
          *     con.DownloadFile("remotePath", "localPath", ref runtimeSuccess)
@@ -25,12 +25,12 @@ namespace Core
          *  Console.WriteLine(cmdResult.Result);
          */
 
-        public LinuxConnector(string username, string privateKeyPath, string serverIp) : this(privateKeyPath, serverIp)
+        public SshNetWrapper(string username, string privateKeyPath, string serverIp) : this(privateKeyPath, serverIp)
         {
             _username = username;
         }
 
-        public LinuxConnector(string privateKeyPath, string serverIp)
+        public SshNetWrapper(string privateKeyPath, string serverIp)
         {
             _privateKeyPath = privateKeyPath; //.pem recommended
             _serverIp = serverIp;
@@ -55,7 +55,7 @@ namespace Core
             catch (Exception e)
             {
                 result = false;
-                Error("LinuxConnector upload file error", e);
+                Error("SshNetWrapper upload file error", e);
             }
         }
 
@@ -74,7 +74,7 @@ namespace Core
             catch (Exception e)
             {
                 result = false;
-                Error("LinuxConnector download file error", e);
+                Error("SshNetWrapper download file error", e);
             }
         }
 
@@ -91,7 +91,7 @@ namespace Core
             catch (Exception e)
             {
                 result = false;
-                Error("LinuxConnector execute command error", e);
+                Error("SshNetWrapper execute command error", e);
                 return null;
             }
         }
@@ -121,7 +121,7 @@ namespace Core
             catch (Exception e)
             {
                 result = false;
-                Error("LinuxConnector reboot error", e);
+                Error("SshNetWrapper reboot error", e);
                 return false;
             }
         }
@@ -175,7 +175,7 @@ namespace Core
             }
             catch (Exception e)
             {
-                Error("LinuxConnector SFTP connect error", e);
+                Error("SshNetWrapper SFTP connect error", e);
             }
         }
 
@@ -187,7 +187,7 @@ namespace Core
             }
             catch (Exception e)
             {
-                Error("LinuxConnector SSH connect error", e);
+                Error("SshNetWrapper SSH connect error", e);
             }
         }
 
@@ -207,7 +207,7 @@ namespace Core
             _sshClient?.Dispose();
         }
 
-        ~LinuxConnector()
+        ~SshNetWrapper()
         {
             Dispose();
         }
