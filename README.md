@@ -12,7 +12,17 @@ For FILE PATHS **I'm using HostingEnvironment.MapPath(...)**, make sure is it OK
 - Reboot
 - CreateConnectionInfo
 
-## USAGE EXAMPLE
+## BASIC USAGE
+
+```
+using (var con = new SshNetWrapper(privateKeyPath, serverIp))
+{
+    var cmd = con.ExecuteCommand("sudo...");
+    Console.WriteLine(cmd.Result);
+}
+```
+
+## RECOMMEND USAGE
 
 ```
 SshCommand cmdResult;
